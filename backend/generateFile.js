@@ -22,9 +22,19 @@ const generateFile = (language, code) => {
 
   let filePath;
 
-  const dirCPP = path.join(dirCodes, "cpp");
-  if (!fs.existsSync(dirCPP)) fs.mkdirSync(dirCPP, { recursive: true });
-  filePath = path.join(dirCPP, fileName);
+  if (language === "cpp") {
+    const dirCPP = path.join(dirCodes, "cpp");
+    if (!fs.existsSync(dirCPP)) fs.mkdirSync(dirCPP, { recursive: true });
+    filePath = path.join(dirCPP, fileName);
+  } else if (language === "java") {
+    const dirJava = path.join(dirCodes, "java");
+    if (!fs.existsSync(dirJava)) fs.mkdirSync(dirJava, { recursive: true });
+    filePath = path.join(dirJava, fileName);
+  } else {
+    const dirPython = path.join(dirCodes, "python");
+    if (!fs.existsSync(dirPython)) fs.mkdirSync(dirPython, { recursive: true });
+    filePath = path.join(dirPython, fileName);
+  }
 
   // C:\Users\iamsa\Desktop\CODES\Web Development\Online Compiler\codes\8089f3ad-6c2e-4b65-8084-c6220f1d1384.python
   fs.writeFileSync(filePath, code); //we are writing our code in the filePath
